@@ -34,6 +34,7 @@ not explicitly addressed to itself
 * RFC4861 - [Terminology](https://datatracker.ietf.org/doc/html/rfc4861#section-2)
 * Wikipedia - [IPv6 address](https://en.wikipedia.org/wiki/IPv6_address#:~:text=IPv6%20addresses%20are%20assigned%20to,times%20larger%20than%20the%20%2F8)
 
+![Address](https://raw.githubusercontent.com/mazyaar/IPv6_Tutorial/main/Ipv6_Pic/address.png)
 
 ### Address Notation
 * IPv6 consists of 8 fields each 16 bits long
@@ -323,6 +324,8 @@ This process will convert a MAC address into an EUI-64 format and then embed it 
 
 ### Subnetting
 
+![sub1](https://raw.githubusercontent.com/mazyaar/IPv6_Tutorial/main/Ipv6_Pic/sub1.png)
+
 ``2001:db8:be0:75a2:020c:29ff:fe0c:47d5``
 
 |                               		  |                      	|                    			       |
@@ -484,6 +487,8 @@ fe80:: + Interface ID (Modified EUI-64)
 * $$2^12$$ = 4096 /60 subnets
 * Each of your customers will have 16x /64 prefixes for their devices.
 
+![sub2](https://raw.githubusercontent.com/mazyaar/IPv6_Tutorial/main/Ipv6_Pic/sub2.png)
+
 ```
 2001:0db8:0be0:|000|0::
 	       | 12|
@@ -550,6 +555,8 @@ Routing prefix: 60 bits	Customer can assign 16x 64 bit prefixes
 ## Module 3
 
 ### IPv6 Header
+
+![ipheader](https://raw.githubusercontent.com/mazyaar/IPv6_Tutorial/main/Ipv6_Pic/ipheader.png)
 
 * Version - always contains ‘6’ (0110 in binary)
 * Traffic class - holds 2 values.
@@ -775,9 +782,12 @@ identifier
 ### Tunnel Mode
 The original packet is wrapped, encrypted, a new IP header is added and the packet is sent to the other side of the tunne
 
+![tunnelmode](https://raw.githubusercontent.com/mazyaar/IPv6_Tutorial/main/Ipv6_Pic/tunnelmode.png)
+
 ### Transport Mode
 The data of the packet is encrypted, but the header is sent in open clear text, IP header is copied to the front
 
+![transportmode](https://raw.githubusercontent.com/mazyaar/IPv6_Tutorial/main/Ipv6_Pic/transportmode.png)
 
 ## Module 5
 
@@ -786,6 +796,8 @@ The data of the packet is encrypted, but the header is sent in open clear text, 
 • The most recommended way of implementing IPv6
 • Also endorsed by RIPE
 
+![dual-stack](https://raw.githubusercontent.com/mazyaar/IPv6_Tutorial/main/Ipv6_Pic/dual-stack.png)
+
 ## 6to4
 • Allows IPv6 packets to be transmitted over an IPv4 network
 • A 6to4 relay server with native IPv6 connectivity needs to be configured on the other end
@@ -793,8 +805,6 @@ The data of the packet is encrypted, but the header is sent in open clear text, 
 • IPv6 packets are encapsulated in IPv4 packets
 • Delivered to a 6to4 relay via IPv4 network
 • Decapsulated and sent forward as IPv6 packets
-
-
 • Ready to use services offer 6to4 tunnels free of charge
 • E.g. Hurricane Electric, SixXS
 • Can setup your own
@@ -804,12 +814,16 @@ The data of the packet is encrypted, but the header is sent in open clear text, 
 • Local and remote public IPv4 addresses have to be entered
 • 6to4 uses encapsulation, the MTU has to be changed to a smaller one
 
+![6t4](https://raw.githubusercontent.com/mazyaar/IPv6_Tutorial/main/Ipv6_Pic/6t4.png)
+
 ### 6RD
 • IPv6 Rapid Deployment is 6to4 derivative
 • IPv6 relay is controlled by your ISP
 • From client to ISP is IPv4 network only
 • On the client side additional software is needed to encapsulate IPv6 into IPv4 packets
 • Described in RFC5569
+
+![6rd](https://raw.githubusercontent.com/mazyaar/IPv6_Tutorial/main/Ipv6_Pic/6rd.png)
 
 ### Teredo
 • Teredo encapsulates IPv6 traffic into IPv4 DP packets
@@ -826,11 +840,12 @@ The data of the packet is encrypted, but the header is sent in open clear text, 
 • IPv6 only links are used between the ISP and the client
 • Client has native IPv6 connectivity
 • When and IPv4 packet needs to be sent, it is encapsulated into an IPv6 packet
-
 • Sent to the ISP’s NAT box which decapsulates and forwards it as IPv4 traffic
 • NAT is centralized at the ISP level
 • Clients use private IPv4 addresses (e.g.10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
 • ISP → Client network is IPv6 only
+
+![ds-lite](https://raw.githubusercontent.com/mazyaar/IPv6_Tutorial/main/Ipv6_Pic/ds-lite.png)
 
 ## Module 6
 
