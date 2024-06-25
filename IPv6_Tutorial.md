@@ -591,34 +591,34 @@ Routing prefix: 60 bits	Customer can assign 16x 64 bit prefixes
 
 
 ### Fragmentation
-• Performed only by source nodes
-• Fragment header is identified by a Next Header value of 44
-• For every packet the source node generates an identification value
-• ID must be different than any other fragmented packet sent recently with the same Src and Dst Address
-• The packet consists of “unfragmentable” and “fragmentable” parts
-• Unfragmentable = IPv6 header + extenstion headers that must be processed by routers en route to the destination
-• Fragmentable = the rest of the packet
+* Performed only by source nodes
+* Fragment header is identified by a Next Header value of 44
+* For every packet the source node generates an identification value
+* ID must be different than any other fragmented packet sent recently with the same Src and Dst Address
+* The packet consists of “unfragmentable” and “fragmentable” parts
+* Unfragmentable = IPv6 header + extenstion headers that must be processed by routers en route to the destination
+* Fragmentable = the rest of the packet
 
 ### Path MTU
 
-• Path MTU (PMTU) is the largest packet size that can traverse between a source and destination without fragmentation
-• IPv6 requires MTU 1280 bytes or greater
-	• IPv4 requires MTU 68 bytes
+* Path MTU (PMTU) is the largest packet size that can traverse between a source and destination without fragmentation
+* IPv6 requires MTU 1280 bytes or greater
+	* IPv4 requires MTU 68 bytes
 
 ### Path MTU Discovery
 
 * PMTU discovery is a technique for determining the path MTU between two IP hosts
-• To discover and take advantage of PMTUs greater than 1280, it is strongly recommended to implement PMTU discovery
-• For packets that are larger than PMTU fragmentation is used
+* To discover and take advantage of PMTUs greater than 1280, it is strongly recommended to implement PMTU discovery
+* For packets that are larger than PMTU fragmentation is used
 
 
 ## Module 4
 
 ### ICMPv6
 
-• ICMPv6 is an integral part of IPv6
-• It is used to report errors encountered in processing packets, and to perform other functions, such as diagnostics
-• There are 2 ICMPv6 message classes - error (types 0-127) and information (types 128-255)
+* ICMPv6 is an integral part of IPv6
+* It is used to report errors encountered in processing packets, and to perform other functions, such as diagnostics
+* There are 2 ICMPv6 message classes - error (types 0-127) and information (types 128-255)
 
 | type  | 	   Meaning	     |     class	|
 | -----	|----------------------------|------------------|
@@ -631,151 +631,151 @@ Routing prefix: 60 bits	Customer can assign 16x 64 bit prefixes
 
 ### Neighbor Discovery
 
-• NDP uses 5 different ICMPv6 packet types:
-	• Router solicitation (type 133)
-	• Router advertisement (type 134)
-	• Neighbor solicitation (type 135)
-	• Neighbor advertisement (type 136)
-	• Redirect (type 137)
+* NDP uses 5 different ICMPv6 packet types:
+	* Router solicitation (type 133)
+	* Router advertisement (type 134)
+	* Neighbor solicitation (type 135)
+	* Neighbor advertisement (type 136)
+	* Redirect (type 137)
 
-• Neighbor Discovery makes use of a number of different special addresses including:
-	• Link-local scope address to reach all nodes (multicast address) - FF02::1
-• Link-local scope address to reach all routers (multicast address) - FF02::2
-• And others, for more info see - IPv6 Multicast Address Space Registry
+* Neighbor Discovery makes use of a number of different special addresses including:
+	* Link-local scope address to reach all nodes (multicast address) - FF02::1
+* Link-local scope address to reach all routers (multicast address) - FF02::2
+* And others, for more info see - IPv6 Multicast Address Space Registry
 
 ### Router Solicitation
-• Hosts send Router Solicitations in order to prompt routers to generate Router Advertisements quickly rather than at their next scheduled time
-• It is sent to all-routers multicast address
-• Source - IP address assigned to the sending interface
-• Or the unspecified address (::/128) if no address is assigned
-• Destination - typically the all-routers multicast address
+* Hosts send Router Solicitations in order to prompt routers to generate Router Advertisements quickly rather than at their next scheduled time
+* It is sent to all-routers multicast address
+* Source - IP address assigned to the sending interface
+* Or the unspecified address (::/128) if no address is assigned
+* Destination - typically the all-routers multicast address
 
 ### Router Advertisement
-• Routers advertise their presence periodically, or in response to a Router Solicitation message
-• A host receives Router Advertisements from all routers, building a list of default routers
-• Various internet and link parameters are advertised such as prefixes, address configuration, MTU, etc.
-• Facilitates centralized administration of critical parameters, that can be set on routers and automatically propagated to all attached hosts
-• Allow routers to inform hosts how to perform address autoconfiguration
-• Routers can specify whether hosts should use DHCPv6 and/or autonomous (stateless) address configuration
-• Contains - source, link-local address assigned to the interface from which this message is sent
-• Destination, typically the Source Address of an invoking Router Solicitation or the all- nodes multicast address
-• M: 1-bit "Managed address configuration" flag
-• O: 1-bit "Other configuration" flag
+* Routers advertise their presence periodically, or in response to a Router Solicitation message
+* A host receives Router Advertisements from all routers, building a list of default routers
+* Various internet and link parameters are advertised such as prefixes, address configuration, MTU, etc.
+* Facilitates centralized administration of critical parameters, that can be set on routers and automatically propagated to all attached hosts
+* Allow routers to inform hosts how to perform address autoconfiguration
+* Routers can specify whether hosts should use DHCPv6 and/or autonomous (stateless) address configuration
+* Contains - source, link-local address assigned to the interface from which this message is sent
+* Destination, typically the Source Address of an invoking Router Solicitation or the all- nodes multicast address
+* M: 1-bit "Managed address configuration" flag
+* O: 1-bit "Other configuration" flag
 
 ### Neighbor Solicitation
-• Nodes accomplish address resolution by multicasting a Neighbor Solicitation, that asks the target node to return its link-layer address
-• To verify that a neighbor is still reachable
-• The target returns its link-layer address in a unicast Neighbor Advertisement message
-• A single request-response pair of packets is sufficient for both to resolve each other's link-layer addresses
-• Neighbor Solicitation is also used for Duplicate Address Detection
-• Contains - source, either an address assigned to the interface from which this message is sent or (if Duplicate Address Detection is in progress) the unspecified address
-• Destination, either the solicited-node multicast address corresponding to the target address, or the target address
+* Nodes accomplish address resolution by multicasting a Neighbor Solicitation, that asks the target node to return its link-layer address
+* To verify that a neighbor is still reachable
+* The target returns its link-layer address in a unicast Neighbor Advertisement message
+* A single request-response pair of packets is sufficient for both to resolve each other's link-layer addresses
+* Neighbor Solicitation is also used for Duplicate Address Detection
+* Contains - source, either an address assigned to the interface from which this message is sent or (if Duplicate Address Detection is in progress) the unspecified address
+* Destination, either the solicited-node multicast address corresponding to the target address, or the target address
 
 ### Neighbor Advertisement
-• A response to a Neighbor Solicitation message
-• A node may also send unsolicited Neighbor Advertisements in order to (unreliably) propagate new information quickly
-• E.g. to announce a link-layer address change
-• Source: an address assigned to the interface from which the advertisement is sent
-• Destination: the Source Address of an invoking Neighbor Solicitation or the all- nodes multicast address
+* A response to a Neighbor Solicitation message
+* A node may also send unsolicited Neighbor Advertisements in order to (unreliably) propagate new information quickly
+* E.g. to announce a link-layer address change
+* Source: an address assigned to the interface from which the advertisement is sent
+* Destination: the Source Address of an invoking Neighbor Solicitation or the all- nodes multicast address
 
 ### Redirect
-• Used by routers to inform hosts of a better first hop for a destination
-• Hosts can also be informed by a redirect that the destination is in fact a neighbor
-• Separate address resolution is not needed upon receiving a redirect
+* Used by routers to inform hosts of a better first hop for a destination
+* Hosts can also be informed by a redirect that the destination is in fact a neighbor
+* Separate address resolution is not needed upon receiving a redirect
 
 ### Managed Address
 - Configuration
-• Router Advertisement 1-bit M flag
-• When set, it indicates that addresses are available via DHCPv6
-• If the M flag is set, the O flag is redundant
+* Router Advertisement 1-bit M flag
+* When set, it indicates that addresses are available via DHCPv6
+* If the M flag is set, the O flag is redundant
 and can be ignored because DHCPv6 will return all available configuration information
-• SLAAC will not be used
+* SLAAC will not be used
 
 ### Other Configuration
-• Router Advertisement 1-bit O flag
-• When set, it indicates that other configuration information is available via DHCPv6
-• E.g. DNS-related information (necessary for Windows clients)
-• If neither M nor O flags are set, this indicates that no information is available via DHCPv6
-• M Flags: Managed Address Configuration
-• O Other Configuration
+* Router Advertisement 1-bit O flag
+* When set, it indicates that other configuration information is available via DHCPv6
+* E.g. DNS-related information (necessary for Windows clients)
+* If neither M nor O flags are set, this indicates that no information is available via DHCPv6
+* M Flags: Managed Address Configuration
+* O Other Configuration
 ### Duplicate Address
 - Detection (DAD)
-• Using Neighbor Solicitation a node can determine whether or not an address it wishes to use is already in use
-• DAD sends a message with an unspecified source address targeting its own "tentative" address
-• Such messages trigger nodes already using the address to respond with a multicast Neighbor Advertisement indicating that the address is in use
-• If no response is received, the node uses the chosen address
+* Using Neighbor Solicitation a node can determine whether or not an address it wishes to use is already in use
+* DAD sends a message with an unspecified source address targeting its own "tentative" address
+* Such messages trigger nodes already using the address to respond with a multicast Neighbor Advertisement indicating that the address is in use
+* If no response is received, the node uses the chosen address
 
 ### Neighbor Unreachability Discovery
 - Detection (NUD)
-• Communication to or through a neighbor may fail for numerous reasons at any time, including hardware failure, hot-swap of an interface card, etc.
-• NUD detects the failure of a neighbor or the failure of the forward path to the neighbor
-• NUD uses confirmation from two sources
-• When possible, upper-layer protocols provide a positive confirmation that a connection is making "forward progress"
-• When positive confirmation is not forthcoming, a node sends unicast Neighbor Solicitation messages that solicit Neighbor Advertisements as reachability confirmation from the next hop
-• If node address changes NUD ensures that all nodes will reliably discover the new address
+* Communication to or through a neighbor may fail for numerous reasons at any time, including hardware failure, hot-swap of an interface card, etc.
+* NUD detects the failure of a neighbor or the failure of the forward path to the neighbor
+* NUD uses confirmation from two sources
+* When possible, upper-layer protocols provide a positive confirmation that a connection is making "forward progress"
+* When positive confirmation is not forthcoming, a node sends unicast Neighbor Solicitation messages that solicit Neighbor Advertisements as reachability confirmation from the next hop
+* If node address changes NUD ensures that all nodes will reliably discover the new address
 
 ### Multicast Listener
 - Discovery (MLD)
-• MLDv2 is a translation of the IGMPv3 protocol for IPv6 semantics
-• It is used by an IPv6 router to discover multicast listeners (nodes that wish to receive multicast packets) on directly attached links
-• To discover which multicast addresses are of interest to those neighboring nodes
+* MLDv2 is a translation of the IGMPv3 protocol for IPv6 semantics
+* It is used by an IPv6 router to discover multicast listeners (nodes that wish to receive multicast packets) on directly attached links
+* To discover which multicast addresses are of interest to those neighboring nodes
 
 ### MLD
-• The purpose of MLD is to enable each multicast router to learn, which multicast addresses and which sources have interested listeners
-• Specifies multicast address listeners and multicast routers
-• A node can subscribe to certain multicast messages
-• One router becomes elected as the Querier
-• It will gather and maintain information about listeners and their subscriptions
-• If the router fails another router on the same subnet takes over the role
+* The purpose of MLD is to enable each multicast router to learn, which multicast addresses and which sources have interested listeners
+* Specifies multicast address listeners and multicast routers
+* A node can subscribe to certain multicast messages
+* One router becomes elected as the Querier
+* It will gather and maintain information about listeners and their subscriptions
+* If the router fails another router on the same subnet takes over the role
 
 ### SEND
-• If not secured, NDP is vulnerable to various attacks 
-• SEcure Neighbor Discovery (SEND) is a proposed standard which helps to mitigate possible threats
-• For more info see RFC3971
+* If not secured, NDP is vulnerable to various attacks 
+* SEcure Neighbor Discovery (SEND) is a proposed standard which helps to mitigate possible threats
+* For more info see RFC3971
 
 ### Temporary Addresses
-• Addresses generated using SLAAC contain an embedded interface identifier, which remains constant over time
-• When a fixed identifier is used in multiple contexts, it becomes possible to correlate seemingly unrelated activity using this
+* Addresses generated using SLAAC contain an embedded interface identifier, which remains constant over time
+* When a fixed identifier is used in multiple contexts, it becomes possible to correlate seemingly unrelated activity using this
 identifier
-• For a "road warrior" who has Internet connectivity both at home and at the office, the interface identifier contained within the address remains the same
-• Privacy Extensions for SLAAC in IPv6 (RFC4941) suggests improvements to this behavior
-• There are various implementations
-• macOS and Windows10 generate new temporary IPv6 address every 24 hours
-• Linux may create new temporary address for each new SSL/TLS connection
+* For a "road warrior" who has Internet connectivity both at home and at the office, the interface identifier contained within the address remains the same
+* Privacy Extensions for SLAAC in IPv6 (RFC4941) suggests improvements to this behavior
+* There are various implementations
+* macOS and Windows10 generate new temporary IPv6 address every 24 hours
+* Linux may create new temporary address for each new SSL/TLS connection
 
 ### LA
-• Find out the temporary address(es) of your computer
-• If you’re using Linux/macOS, open terminal and use command ``ifconfig``
-• For Windows - ``ipconfig``
+* Find out the temporary address(es) of your computer
+* If you’re using Linux/macOS, open terminal and use command ``ifconfig``
+* For Windows - ``ipconfig``
 
 ### Firewall
-• RouterOS IPv6 → Firewall is similar with IP → Firewall
-• RouterOS IPv6 Firewall implements same Filter and Mangle rules as with IPv4
-• As well as Address Lists
-• By default RouterOS IPv6 firewall does not have any filter rules
+* RouterOS IPv6 → Firewall is similar with IP → Firewall
+* RouterOS IPv6 Firewall implements same Filter and Mangle rules as with IPv4
+* As well as Address Lists
+* By default RouterOS IPv6 firewall does not have any filter rules
 
 ### NAT
-• There’s no IPv6 → Firewall → NAT menu For mikrotik Devices.
-• No need for NAT
-	• There are plenty IPv6 addresses available
-• One should not confuse NAT box with firewall - it does not provide security in itself
-• See RFC5902: IAB Thoughts on IPv6 NAT
+* There’s no IPv6 → Firewall → NAT menu For mikrotik Devices.
+* No need for NAT
+	* There are plenty IPv6 addresses available
+* One should not confuse NAT box with firewall - it does not provide security in itself
+* See RFC5902: IAB Thoughts on IPv6 NAT
 
 ### IPsec
-• Internet Protocol Security (IPsec) - a set of protocols to support secure communication at the IP layer
-• Originally developed for IPv6, later backported also to IPv4
-• Provides encryption to the IP protocol
-• Can be used both with IPv4 and IPv6
-• Multiple approaches can be used to implement IPsec:
-• Header only encryption (AH)
-• Data only encryption (ESP)
-• Header and data encryption (AH+ESP)
-• ESP (packet data encryption) is the most widely used, the other two are used rarely
-• Can be configured to operate in two different modes:
-	• Transport
-	• Tunnel
-• Both can be used to encrypt IPv6 traffic.
-• IPv6 Node Requirements (RFC6434) states that all IPv6 nodes SHOULD support IPsec
+* Internet Protocol Security (IPsec) - a set of protocols to support secure communication at the IP layer
+* Originally developed for IPv6, later backported also to IPv4
+* Provides encryption to the IP protocol
+* Can be used both with IPv4 and IPv6
+* Multiple approaches can be used to implement IPsec:
+* Header only encryption (AH)
+* Data only encryption (ESP)
+* Header and data encryption (AH+ESP)
+* ESP (packet data encryption) is the most widely used, the other two are used rarely
+* Can be configured to operate in two different modes:
+	* Transport
+	* Tunnel
+* Both can be used to encrypt IPv6 traffic.
+* IPv6 Node Requirements (RFC6434) states that all IPv6 nodes SHOULD support IPsec
 
 ***SHOULD - means that there may exist valid reasons in particular circumstances to ignore a particular item, but the full implications must be understood and carefully weighed before choosing a different course***
 
@@ -792,95 +792,95 @@ The data of the packet is encrypted, but the header is sent in open clear text, 
 ## Module 5
 
 ### Dual Stack
-• Fully functional IPv4 and IPv6 work side by side
-• The most recommended way of implementing IPv6
-• Also endorsed by RIPE
+* Fully functional IPv4 and IPv6 work side by side
+* The most recommended way of implementing IPv6
+* Also endorsed by RIPE
 
 ![dual-stack](https://raw.githubusercontent.com/mazyaar/IPv6_Tutorial/main/Ipv6_Pic/dual-stack.png)
 
 ## 6to4
-• Allows IPv6 packets to be transmitted over an IPv4 network
-• A 6to4 relay server with native IPv6 connectivity needs to be configured on the other end
-• Intended only as a transition mechanism, not as a permanent solution
-• IPv6 packets are encapsulated in IPv4 packets
-• Delivered to a 6to4 relay via IPv4 network
-• Decapsulated and sent forward as IPv6 packets
-• Ready to use services offer 6to4 tunnels free of charge
-• E.g. Hurricane Electric, SixXS
-• Can setup your own
-• Hurricane Electric (tunnelbroker.net) provides a 6to4 service with ready to use configuration for RouterOS
-• Additional information how to get IPv6 connectivity can be found on wiki.mikrotik.com
-• RouterOS 6to4 interface is used to set up the tunnel
-• Local and remote public IPv4 addresses have to be entered
-• 6to4 uses encapsulation, the MTU has to be changed to a smaller one
+* Allows IPv6 packets to be transmitted over an IPv4 network
+* A 6to4 relay server with native IPv6 connectivity needs to be configured on the other end
+* Intended only as a transition mechanism, not as a permanent solution
+* IPv6 packets are encapsulated in IPv4 packets
+* Delivered to a 6to4 relay via IPv4 network
+* Decapsulated and sent forward as IPv6 packets
+* Ready to use services offer 6to4 tunnels free of charge
+* E.g. Hurricane Electric, SixXS
+* Can setup your own
+* Hurricane Electric (tunnelbroker.net) provides a 6to4 service with ready to use configuration for RouterOS
+* Additional information how to get IPv6 connectivity can be found on wiki.mikrotik.com
+* RouterOS 6to4 interface is used to set up the tunnel
+* Local and remote public IPv4 addresses have to be entered
+* 6to4 uses encapsulation, the MTU has to be changed to a smaller one
 
 ![6t4](https://raw.githubusercontent.com/mazyaar/IPv6_Tutorial/main/Ipv6_Pic/6t4.png)
 
 ### 6RD
-• IPv6 Rapid Deployment is 6to4 derivative
-• IPv6 relay is controlled by your ISP
-• From client to ISP is IPv4 network only
-• On the client side additional software is needed to encapsulate IPv6 into IPv4 packets
-• Described in RFC5569
+* IPv6 Rapid Deployment is 6to4 derivative
+* IPv6 relay is controlled by your ISP
+* From client to ISP is IPv4 network only
+* On the client side additional software is needed to encapsulate IPv6 into IPv4 packets
+* Described in RFC5569
 
 ![6rd](https://raw.githubusercontent.com/mazyaar/IPv6_Tutorial/main/Ipv6_Pic/6rd.png)
 
 ### Teredo
-• Teredo encapsulates IPv6 traffic into IPv4 DP packets
-• The traffic is sent through IPv4 Internet
-• Unlike 6to4, Teredo works behind an IPv4 NAT
-• Uses Teredo prefix ``2001::/32``
-• Can only provide a single IPv6 address per tunnel endpoint
-• Cannot be used to distribute addresses to multiple hosts like 6to4
-• Developed by Microsoft
-• Described in RFC4380
+* Teredo encapsulates IPv6 traffic into IPv4 DP packets
+* The traffic is sent through IPv4 Internet
+* Unlike 6to4, Teredo works behind an IPv4 NAT
+* Uses Teredo prefix ``2001::/32``
+* Can only provide a single IPv6 address per tunnel endpoint
+* Cannot be used to distribute addresses to multiple hosts like 6to4
+* Developed by Microsoft
+* Described in RFC4380
 
 ### DS-lite
-• Dual stack lite
-• IPv6 only links are used between the ISP and the client
-• Client has native IPv6 connectivity
-• When and IPv4 packet needs to be sent, it is encapsulated into an IPv6 packet
-• Sent to the ISP’s NAT box which decapsulates and forwards it as IPv4 traffic
-• NAT is centralized at the ISP level
-• Clients use private IPv4 addresses (e.g.10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
-• ISP → Client network is IPv6 only
+* Dual stack lite
+* IPv6 only links are used between the ISP and the client
+* Client has native IPv6 connectivity
+* When and IPv4 packet needs to be sent, it is encapsulated into an IPv6 packet
+* Sent to the ISP’s NAT box which decapsulates and forwards it as IPv4 traffic
+* NAT is centralized at the ISP level
+* Clients use private IPv4 addresses (e.g.10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
+* ISP → Client network is IPv6 only
 
 ![ds-lite](https://raw.githubusercontent.com/mazyaar/IPv6_Tutorial/main/Ipv6_Pic/ds-lite.png)
 
 ## Module 6
 
 ### DHCPv6 PD Client
-• For acquiring IPv6 prefix from a DHCPv6 PD server
-• PD client sets route to the DHCPv6 PD server
-• Afterwards the router can subdivide the acquired prefix and hand out to it’s clients
-• DHCPv6 PD (prefix delegation)
-• It is used to assign prefixes to network hosts (e.g. routers)
-• To configure - enable “Other Configuration” in IPv6 → ND **for Mikrotik Os**
-• For acquiring IPv6 address from a DHCPv6 server
-• Client can set default route to the DHCPv6 server
-• Acquires DNS, NTP and other information
+* For acquiring IPv6 prefix from a DHCPv6 PD server
+* PD client sets route to the DHCPv6 PD server
+* Afterwards the router can subdivide the acquired prefix and hand out to it’s clients
+* DHCPv6 PD (prefix delegation)
+* It is used to assign prefixes to network hosts (e.g. routers)
+* To configure - enable “Other Configuration” in IPv6 → ND **for Mikrotik Os**
+* For acquiring IPv6 address from a DHCPv6 server
+* Client can set default route to the DHCPv6 server
+* Acquires DNS, NTP and other information
 
 ### DHCP unique identifier
-• DHCP unique identifier (DUID). Each DHCP client and server has exactly one DUID
-• DHCP servers use DUIDs to identify clients for the selection of configuration parameters
-• DHCP clients use DUIDs to identify a server in messages where a server needs to be identified.
+* DHCP unique identifier (DUID). Each DHCP client and server has exactly one DUID
+* DHCP servers use DUIDs to identify clients for the selection of configuration parameters
+* DHCP clients use DUIDs to identify a server in messages where a server needs to be identified.
 
 ### IPv6 Tunnels
-• Currently RouterOS supports following
+* Currently RouterOS supports following
 - IPv6 tunnels
-	• IPIPv6
-	• EoIPv6
-	• GRE6
-• Work in a similar way as IPv4 counterparts
+	* IPIPv6
+	* EoIPv6
+	* GRE6
+* Work in a similar way as IPv4 counterparts
 
 ### IP Version Agnostic
-• IP → DNS supports both IPv4 and IPv6 addresses
-• Both for DNS servers and static entries
+* IP → DNS supports both IPv4 and IPv6 addresses
+* Both for DNS servers and static entries
 
 ### IPv6 Reverse DNS
-• Entry consists or 32 values separated by dots
-• Zeros are not omitted
-• ip6.arpa. is added at the end
+* Entry consists or 32 values separated by dots
+* Zeros are not omitted
+* ip6.arpa. is added at the end
 
 | AAAA  | 	  2001:db8:3:4:5:6:7:8						     |
 | -----	|----------------------------------------------------------------------------|
@@ -888,30 +888,30 @@ The data of the packet is encrypted, but the header is sent in open clear text, 
 
 
 ### NTP 
-• NTP client supports both IPv4 and IPv6 addresses
+* NTP client supports both IPv4 and IPv6 addresses
 
 ### PPP IPv6 Support
-• PPP supports prefix delegation (PD) to PPP clients
-• Use PPP Profile DHCPv6 PD Pool option to specify pools that will be assigned to clients
-• If a RouterOS device is a client, a DHCPv6 PD client must be configured on PPP client interface
+* PPP supports prefix delegation (PD) to PPP clients
+* Use PPP Profile DHCPv6 PD Pool option to specify pools that will be assigned to clients
+* If a RouterOS device is a client, a DHCPv6 PD client must be configured on PPP client interface
 
 ### Routing
-• IPv6 global routing works similar as in IPv4
-• Concepts are the same
-• Static and/or dynamic routing can be used
-• Dynamic routing protocols such as OSPF (v3), RIP (ng), BGP support IPv6
-• IPv6 link-local addresses can be used to communicate between hosts
-• There’s no need for global IPv6 addresses
-• Fully functional internal IPv6 network can be created with LL addresses
+* IPv6 global routing works similar as in IPv4
+* Concepts are the same
+* Static and/or dynamic routing can be used
+* Dynamic routing protocols such as OSPF (v3), RIP (ng), BGP support IPv6
+* IPv6 link-local addresses can be used to communicate between hosts
+* There’s no need for global IPv6 addresses
+* Fully functional internal IPv6 network can be created with LL addresses
 
 ### IPv6 NAT
-• NAT was originally used for ease of rerouting traffic in IP networks without renumbering every host
-• It has become a popular tool in conserving global IPv4 addresses
-• There are 2 IPv6 addresses vs 2 IPv4 
-• Each IPv6 enabled host can have a global IPv6 address
-• In most common cases there’s usually no need for IPv6 NAT
-• NAT is not a security feature, firewall is needed also for IPv4
-• Companies can apply for Provider Independent (PI) address space
-• In case a provider has to be changed, IP’s can remain the same
+* NAT was originally used for ease of rerouting traffic in IP networks without renumbering every host
+* It has become a popular tool in conserving global IPv4 addresses
+* There are 2 IPv6 addresses vs 2 IPv4 
+* Each IPv6 enabled host can have a global IPv6 address
+* In most common cases there’s usually no need for IPv6 NAT
+* NAT is not a security feature, firewall is needed also for IPv4
+* Companies can apply for Provider Independent (PI) address space
+* In case a provider has to be changed, IP’s can remain the same
 
 
